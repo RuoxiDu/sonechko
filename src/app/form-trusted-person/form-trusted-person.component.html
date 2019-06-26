@@ -1,0 +1,28 @@
+<ion-grid>
+    <ion-row>
+  <form [formGroup]="trustedPersonForm">
+
+    <ion-item>
+      <ion-label>First Name:</ion-label>
+      <ion-input type="text" formControlName="firstName"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Last Name:</ion-label>
+      <ion-input type="text" formControlName="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email:</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <input type="file" formControlName="photo"
+       id="avatar" name="avatar"
+       accept="image/png, image/jpeg">
+
+  </form>
+
+  
+  </ion-row>
+</ion-grid>

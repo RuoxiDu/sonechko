@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
+  },
+  {
+    path: 'trusted-person-form',
+    loadChildren: './form-trusted-person/form-trusted-person.module#FormTrustedPersonModule'
   }
 ];
 
