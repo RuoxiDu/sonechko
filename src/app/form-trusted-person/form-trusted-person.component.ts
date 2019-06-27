@@ -14,7 +14,7 @@ export class FormTrustedPersonComponent implements OnInit {
 
   ngOnInit() {
     this.trustedPersonForm = new FormGroup({
-      firstName: new FormControl(''),
+      firstName: new FormControl('', Validators.required),
       lastName: new FormControl(''),
       phone: new FormControl(''),
       email: new FormControl('', Validators.email),
