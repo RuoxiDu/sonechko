@@ -23,7 +23,7 @@ export class AppComponent {
     {
       title: 'Trusted Person Form',
       url: '/trusted-person-form',
-      icon: 'airplane'
+      icon: 'list-box'
     }
   ];
 

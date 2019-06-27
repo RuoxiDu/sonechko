@@ -1,27 +1,48 @@
 <ion-grid>
-    <ion-row>
-  <form [formGroup]="trustedPersonForm">
+  <ion-row class="ion-padding" class="ion-wrap">
 
-    <ion-item>
-      <ion-label>First Name:</ion-label>
-      <ion-input type="text" formControlName="firstName"></ion-input>
-    </ion-item>
+    <form [formGroup]="trustedPersonForm">
+
+      <ion-item>
+        <ion-label>First Name:</ion-label>
+        <ion-input type="text" required="true" inputmode="text" pattern="[a-zA-Z]+" formControlName="firstName"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Last Name:</ion-label>
+        <ion-input type="text" required="true" inputmode="text" pattern="[a-zA-Z]+" formControlName="lastName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Phone:</ion-label>
+        <ion-input type="tel" required="true" pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" 
+        inputmode="tel" placeholder="(000)000-0000" formControlName="phone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-input type="email" required="true" inputmode="email" placeholder="abc@xyz.com" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item-group>
+        <ion-item>
+          <ion-label>Photo:</ion-label>      
+            <input type="file" formControlName="photo"
+              id="photo" name="avatar"
+              accept="image/png, image/jpeg">
+          </ion-item>
   
-    <ion-item>
-      <ion-label>Last Name:</ion-label>
-      <ion-input type="text" formControlName="lastName"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label>Copy of id:</ion-label>
+            <input type="file" formControlName="copyOfId"
+              id="copyOfId" name="avatar"
+              accept="image/png, image/jpeg">
+        </ion-item>
+      </ion-item-group>
+      
+      <ion-button expand="block" color="medium">SAVE</ion-button>
 
-    <ion-item>
-      <ion-label>Email:</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
-    </ion-item>
-
-    <input type="file" formControlName="photo"
-       id="avatar" name="avatar"
-       accept="image/png, image/jpeg">
-
-  </form>
+    </form>
 
   
   </ion-row>
