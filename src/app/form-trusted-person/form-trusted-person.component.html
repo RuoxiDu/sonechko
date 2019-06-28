@@ -9,56 +9,78 @@
     </ion-toolbar>
   </ion-header>
 
-<!-- <ion-grid>
-  <ion-row class="ion-padding" class="ion-wrap"> -->
-      <ion-content>
-    <form [formGroup]="trustedPersonForm">
+  <ion-content>
+    <form [formGroup]="trustedPersonForm" id="trustedPersonForm">
 
       <ion-item>
         <ion-label>First Name:</ion-label>
         <ion-input type="text" inputmode="text" required formControlName="firstName"></ion-input>
       </ion-item>
 
-      <p *ngIf="trustedPersonForm.controls.firstName.invalid && (trustedPersonForm.controls.firstName.touched || trustedPersonForm.controls.firstName.dirty)">
-          First Name cant be empty
-       </p>
+      <div *ngIf="trustedPersonForm.controls.firstName.invalid && (trustedPersonForm.controls.firstName.touched || trustedPersonForm.controls.firstName.dirty)">
+        <div *ngIf="trustedPersonForm.controls.firstName.errors.required">
+          <ion-text color="danger"><p class="form-error">First name is required.</p></ion-text>  
+        </div>
+        <div *ngIf="trustedPersonForm.controls.firstName.errors.pattern">
+            <ion-text color="danger"><p class="form-error">First name should include only letters.</p></ion-text>  
+        </div>
+      </div>
     
       <ion-item>
         <ion-label>Last Name:</ion-label>
-        <ion-input type="text" required="true" inputmode="text" pattern="[a-zA-Z]+" formControlName="lastName"></ion-input>
+        <ion-input type="text" required inputmode="text" formControlName="lastName"></ion-input>
       </ion-item>
+
+      <div *ngIf="trustedPersonForm.controls.lastName.invalid && (trustedPersonForm.controls.lastName.touched || trustedPersonForm.controls.lastName.dirty)">
+        <div *ngIf="trustedPersonForm.controls.lastName.errors.required">
+          <ion-text color="danger"><p class="form-error">Last name is required.</p></ion-text>  
+        </div>
+        <div *ngIf="trustedPersonForm.controls.lastName.errors.pattern">
+            <ion-text color="danger"><p class="form-error">Last name should include only letters.</p></ion-text> 
+        </div>
+      </div>
 
       <ion-item>
         <ion-label>Phone:</ion-label>
-        <ion-input type="tel" required="true" pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" 
-        inputmode="tel" placeholder="(000)000-0000" formControlName="phone"></ion-input>
+        <ion-input type="tel" required pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" 
+        inputmode="tel" placeholder="(XXX)XXX-XXXX" formControlName="phone"></ion-input>
       </ion-item>
+
+      <div *ngIf="trustedPersonForm.controls.phone.invalid && (trustedPersonForm.controls.phone.touched || trustedPersonForm.controls.phone.dirty)">
+        <div *ngIf="trustedPersonForm.controls.phone.errors.required">
+          <ion-text color="danger"><p class="form-error">Phone number is required.</p></ion-text>  
+        </div>
+        <div *ngIf="trustedPersonForm.controls.phone.errors.pattern">
+            <ion-text color="danger"><p class="form-error">Please, adhere to this format (XXX)XXX-XXXX.</p></ion-text> 
+        </div>
+      </div>
 
       <ion-item>
         <ion-label>Email:</ion-label>
-        <ion-input type="email" required="true" inputmode="email" placeholder="abc@xyz.com" formControlName="email"></ion-input>
+        <ion-input type="email" required inputmode="email" placeholder="abc@xyz.com" formControlName="email"></ion-input>
       </ion-item>
 
-      <ion-item-group>
-        <ion-item>
-          <ion-label>Photo:</ion-label>      
-            <input type="file" formControlName="photo"
-              id="photo" name="avatar"
-              accept="image/png, image/jpeg">
-          </ion-item>
-  
-        <ion-item>
-          <ion-label>Copy of id:</ion-label>
-            <input type="file" formControlName="copyOfId"
-              id="copyOfId" name="avatar"
-              accept="image/png, image/jpeg">
-        </ion-item>
-      </ion-item-group>
+      <div *ngIf="trustedPersonForm.controls.email.invalid && (trustedPersonForm.controls.email.touched || trustedPersonForm.controls.email.dirty)">
+          <div *ngIf="trustedPersonForm.controls.email.errors.required">
+            <ion-text color="danger"><p class="form-error">Email is required.</p></ion-text>  
+          </div>
+          <div *ngIf="trustedPersonForm.controls.email.errors.pattern">
+              <ion-text color="danger"><p class="form-error">Please, check the format of the email.</p></ion-text> 
+          </div>
+        </div>
+ 
+      <ion-item>
+        <ion-label>Photo:</ion-label>
+        <ion-input type="file" required accept="image/png, image/jpeg" formControlName="photo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Copy of id:</ion-label>
+        <ion-input type="file" required accept="image/png, image/jpeg" formControlName="copyOfId"></ion-input>
+      </ion-item>
       
       <ion-button expand="block" color="medium">SAVE</ion-button>
 
     </form>
 
   </ion-content>
-  <!-- </ion-row>
-</ion-grid> -->

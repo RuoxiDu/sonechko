@@ -14,12 +14,12 @@ export class FormTrustedPersonComponent implements OnInit {
 
   ngOnInit() {
     this.trustedPersonForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl(''),
-      phone: new FormControl(''),
-      email: new FormControl('', Validators.email),
+      firstName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])),
+      lastName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])),
+      phone: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[(]?([0-9]{3})[)]?[-. ]?([0-9]{3})[-. ]?([0-9]{4})')])),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[^\s@]+@[^\s@]+\.[^\s@]{2,}')])),
       photo: new FormControl(''),
-      copyOfId: new FormControl(''),
+      copyOfId: new FormControl('')
     });
   }
 
