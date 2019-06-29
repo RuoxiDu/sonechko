@@ -16,9 +16,13 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   {
-    path: 'trusted-person-form',
+    path: 'form-trusted-person',
     loadChildren: './form-trusted-person/form-trusted-person.module#FormTrustedPersonModule'
-  }
+  },
+  {
+    path: 'form-no-show',
+    loadChildren: './form-no-show/form-no-show.module#FormNoShowModule'
+  }  
 ];
 
 @NgModule({

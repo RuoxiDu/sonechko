@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
-import { FormTrustedPersonComponent } from './form-trusted-person.component';
+import { FormNoShowComponent } from './form-no-show.component';
 
 @NgModule({
   imports: [
@@ -14,10 +14,10 @@ import { FormTrustedPersonComponent } from './form-trusted-person.component';
     RouterModule.forChild([
       {
         path: '',
-        component: FormTrustedPersonComponent
+        component: FormNoShowComponent
       }
     ])
   ],
-  declarations: [FormTrustedPersonComponent]
+  declarations: [FormNoShowComponent]
 })
-export class FormTrustedPersonModule {}
+export class FormNoShowModule { }

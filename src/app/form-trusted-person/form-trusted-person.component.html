@@ -13,73 +13,80 @@
     <form [formGroup]="trustedPersonForm" id="trustedPersonForm">
 
       <ion-item>
-        <ion-label>First Name:</ion-label>
-        <ion-input type="text" inputmode="text" required formControlName="firstName"></ion-input>
+        <ion-label position="stacked">First Name:</ion-label>
+        <ion-input type="text" inputmode="text" required formControlName="firstName" class="inputBox"></ion-input>
       </ion-item>
 
-      <div *ngIf="trustedPersonForm.controls.firstName.invalid && (trustedPersonForm.controls.firstName.touched || trustedPersonForm.controls.firstName.dirty)">
-        <div *ngIf="trustedPersonForm.controls.firstName.errors.required">
+      <div *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)">
+        <div *ngIf="firstName.errors.required">
           <ion-text color="danger"><p class="form-error">First name is required.</p></ion-text>  
         </div>
-        <div *ngIf="trustedPersonForm.controls.firstName.errors.pattern">
+        <div *ngIf="firstName.errors.pattern">
             <ion-text color="danger"><p class="form-error">First name should include only letters.</p></ion-text>  
         </div>
       </div>
     
       <ion-item>
-        <ion-label>Last Name:</ion-label>
-        <ion-input type="text" required inputmode="text" formControlName="lastName"></ion-input>
+        <ion-label position="stacked">Last Name:</ion-label>
+        <ion-input type="text" required inputmode="text" formControlName="lastName" class="inputBox"></ion-input>
       </ion-item>
 
-      <div *ngIf="trustedPersonForm.controls.lastName.invalid && (trustedPersonForm.controls.lastName.touched || trustedPersonForm.controls.lastName.dirty)">
-        <div *ngIf="trustedPersonForm.controls.lastName.errors.required">
+      <div *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+        <div *ngIf="lastName.errors.required">
           <ion-text color="danger"><p class="form-error">Last name is required.</p></ion-text>  
         </div>
-        <div *ngIf="trustedPersonForm.controls.lastName.errors.pattern">
+        <div *ngIf="lastName.errors.pattern">
             <ion-text color="danger"><p class="form-error">Last name should include only letters.</p></ion-text> 
         </div>
       </div>
 
       <ion-item>
-        <ion-label>Phone:</ion-label>
-        <ion-input type="tel" required pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" 
-        inputmode="tel" placeholder="(XXX)XXX-XXXX" formControlName="phone"></ion-input>
+        <ion-label position="stacked">Phone:</ion-label>
+        <ion-input type="tel" required inputmode="tel" placeholder="(XXX)XXX-XXXX" 
+        formControlName="phone" class="inputBox"></ion-input>
       </ion-item>
 
-      <div *ngIf="trustedPersonForm.controls.phone.invalid && (trustedPersonForm.controls.phone.touched || trustedPersonForm.controls.phone.dirty)">
-        <div *ngIf="trustedPersonForm.controls.phone.errors.required">
+      <div *ngIf="phone.invalid && (phone.touched || phone.dirty)">
+        <div *ngIf="phone.errors.required">
           <ion-text color="danger"><p class="form-error">Phone number is required.</p></ion-text>  
         </div>
-        <div *ngIf="trustedPersonForm.controls.phone.errors.pattern">
+        <div *ngIf="phone.errors.pattern">
             <ion-text color="danger"><p class="form-error">Please, adhere to this format (XXX)XXX-XXXX.</p></ion-text> 
         </div>
       </div>
 
       <ion-item>
-        <ion-label>Email:</ion-label>
-        <ion-input type="email" required inputmode="email" placeholder="abc@xyz.com" formControlName="email"></ion-input>
+        <ion-label position="stacked">Email:</ion-label>
+        <ion-input type="email" required inputmode="email" placeholder="abc@xyz.com" formControlName="email" class="inputBox"></ion-input>
       </ion-item>
 
-      <div *ngIf="trustedPersonForm.controls.email.invalid && (trustedPersonForm.controls.email.touched || trustedPersonForm.controls.email.dirty)">
-          <div *ngIf="trustedPersonForm.controls.email.errors.required">
+      <div *ngIf="email.invalid && (email.touched || email.dirty)">
+          <div *ngIf="email.errors.required">
             <ion-text color="danger"><p class="form-error">Email is required.</p></ion-text>  
           </div>
-          <div *ngIf="trustedPersonForm.controls.email.errors.pattern">
+          <div *ngIf="email.errors.pattern">
               <ion-text color="danger"><p class="form-error">Please, check the format of the email.</p></ion-text> 
           </div>
         </div>
  
       <ion-item>
-        <ion-label>Photo:</ion-label>
-        <ion-input type="file" required accept="image/png, image/jpeg" formControlName="photo"></ion-input>
+        <ion-label position="stacked">Photo:</ion-label>
+        <ion-input type="file" accept="image/png, image/jpeg" formControlName="photo" class="inputBox"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Copy of id:</ion-label>
-        <ion-input type="file" required accept="image/png, image/jpeg" formControlName="copyOfId"></ion-input>
+        <ion-label position="stacked">Copy of id:</ion-label>
+        <ion-input type="file" accept="image/png, image/jpeg" formControlName="copyOfId" class="inputBox"></ion-input>
       </ion-item>
       
-      <ion-button expand="block" color="medium">SAVE</ion-button>
+      <ion-button expand="block" color="medium" [disabled]="trustedPersonForm.invalid">SAVE</ion-button>
+
+
+      <p>
+        Value: {{ trustedPersonForm.value | json }}
+        <br>
+        Form status: {{ trustedPersonForm.status }}
+      </p>
 
     </form>
 

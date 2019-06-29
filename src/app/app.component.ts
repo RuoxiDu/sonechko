@@ -21,8 +21,13 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Trusted Person Form',
-      url: '/trusted-person-form',
+      title: 'Form: Trusted Person',
+      url: '/form-trusted-person',
+      icon: 'list-box'
+    },
+    {
+      title: 'Form: Absence',
+      url: '/form-no-show',
       icon: 'list-box'
     }
   ];

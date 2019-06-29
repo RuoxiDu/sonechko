@@ -8,19 +8,36 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormTrustedPersonComponent implements OnInit {
 
-  trustedPersonForm;
+  trustedPersonForm: FormGroup;
 
   constructor() { }
 
   ngOnInit() {
     this.trustedPersonForm = new FormGroup({
-      firstName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])),
-      lastName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])),
-      phone: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[(]?([0-9]{3})[)]?[-. ]?([0-9]{3})[-. ]?([0-9]{4})')])),
-      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[^\s@]+@[^\s@]+\.[^\s@]{2,}')])),
+      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      phone: new FormControl('', [Validators.required, Validators.pattern('[(]?([0-9]{3})[)]?[-. ]?([0-9]{3})[-. ]?([0-9]{4})')]),
+      email: new FormControl('', [Validators.required, Validators.pattern('^[^@]+@[^@]+[.][^@]{2,}$')]),
       photo: new FormControl(''),
       copyOfId: new FormControl('')
     });
+
+  }
+
+  get firstName() {
+    return this.trustedPersonForm.get('firstName');
+  }
+
+  get lastName() {
+    return this.trustedPersonForm.get('lastName');
+  }
+
+  get phone() {
+    return this.trustedPersonForm.get('phone');
+  }
+  
+  get email() {
+    return this.trustedPersonForm.get('email');
   }
 
 }
