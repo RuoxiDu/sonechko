@@ -54,14 +54,18 @@
 
     <ion-item>
       <ion-label position="stacked">To:</ion-label>
-      <ion-datetime displayFormat="DDDD, DD MMMM YYYY" [(ngModel)]="todayTo" 
+      <ion-datetime displayFormat="DDDD, DD MMMM YYYY" [(ngModel)]="today"
       placeholder="Select Date" formControlName="dateTo" required
-      [min]="minDate" max="2050" class="inputBox"></ion-datetime>
+      [min]="todayFrom" max="2050" class="inputBox"></ion-datetime>
     </ion-item>
-  
+
     <div *ngIf="dateTo.value < dateFrom.value">
-        <ion-text color="danger"><p class="form-error">The To: date is before the From: date.</p></ion-text>  
+      <ion-text color="danger"><p class="form-error">The To: date is before the From: date.</p></ion-text>  
     </div>
+  
+    <!-- <div *ngIf="dateTo.errors.pastDateValidator">
+        <ion-text color="danger"><p class="form-error">The To: date is before the From: date 2.</p></ion-text>  
+    </div> -->
 
     <ion-item-divider></ion-item-divider>
     <ion-item>
