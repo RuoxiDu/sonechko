@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Absence Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="noShowForm" id="noShowForm">
+
+    <ion-item>
+      <ion-label position="stacked">Child's name:</ion-label>
+      <ion-input type="text" inputmode="text" required formControlName="childName" class="inputBox">
+        <select formControlName="childName">
+          <option *ngFor="let childName of childrenList" [value]="childName">
+            {{childName}}</option>
+        </select>
+      </ion-input>
+    </ion-item>
+
+    <div *ngIf="childName.invalid && (childName.touched || childName.dirty)">
+      <div *ngIf="childName.errors.required">
+        <ion-text color="danger"><p class="form-error">Child's name is missing.</p></ion-text>  
+      </div>
+    </div>
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Reason for absence:</ion-label>
+        <ion-select placeholder="Click to select reason" required formControlName="reason" class="inputBox">
+            <ion-select-option *ngFor="let reason of reasonList" [value]="reason">
+                {{reason}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div *ngIf="reason.invalid && (reason.touched || reason.dirty)">
+      <div *ngIf="reason.errors.required">
+        <ion-text color="danger"><p class="form-error">Reason for absence is missing.</p></ion-text>  
+      </div>
+    </div>
+
+
+    <ion-item>
+      <ion-label position="stacked">From:</ion-label>
+      <ion-datetime displayFormat="DDDD, DD MMMM YYYY" [(ngModel)]="todayFrom" 
+      placeholder="Select Date" formControlName="dateFrom" required
+      [min]="minDate" max="2050" class="inputBox"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">To:</ion-label>
+      <ion-datetime displayFormat="DDDD, DD MMMM YYYY" [(ngModel)]="today"
+      placeholder="Select Date" formControlName="dateTo" required
+      [min]="todayFrom" max="2050" class="inputBox"></ion-datetime>
+    </ion-item>
+
+    <div *ngIf="dateTo.value < dateFrom.value">
+      <ion-text color="danger"><p class="form-error">The To: date is before the From: date.</p></ion-text>  
+    </div>
+  
+    <!-- <div *ngIf="dateTo.errors.pastDateValidator">
+        <ion-text color="danger"><p class="form-error">The To: date is before the From: date 2.</p></ion-text>  
+    </div> -->
+
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+      <ion-label position="stacked">Notes:</ion-label>
+      <ion-textarea placeholder="Enter more information here..." type="text" inputmode="text" 
+      auto-grow="true" color="dark" formControlName="notes" wrap="soft" class="inputBox"></ion-textarea>
+    </ion-item>
+
+    
+    <ion-button type="submit" expand="block" color="medium" 
+    [disabled]="noShowForm.invalid || dateTo.value < dateFrom.value">SAVE</ion-button> 
+
+    <p>
+      Value: {{ noShowForm.value | json }}
+      <br>
+      dateTo status: {{ dateTo.status }}
+      Form status: {{ noShowForm.status }}
+    </p>
+
+  </form>
+
+</ion-content>
