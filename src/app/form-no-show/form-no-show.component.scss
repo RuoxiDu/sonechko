@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
 .form-error {
     margin-left: 2em;
 }
@@ -16,14 +20,13 @@ ion-button {
     .inputBox {
         margin: 1em;
     }
-    // ion-select {
-    //     .select-text {
-    //         flex: none;
-    //     }
-    // }
+    .ng-autocomplete {
+        width: auto;
+    }
+    .childName {
+        margin-left: 0.5em;
+        font-size: 1.25em;
+    }
 }
 
-// ion-picker > .picker-wrapper.sc-ion-picker-md {
-//     bottom: 50%;
-//     border-radius: 10px;
-// }
+

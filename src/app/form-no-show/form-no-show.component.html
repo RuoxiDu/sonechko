@@ -12,15 +12,28 @@
 <ion-content>
   <form [formGroup]="noShowForm" id="noShowForm">
 
-    <ion-item>
-      <ion-label position="stacked">Child's name:</ion-label>
-      <ion-input type="text" inputmode="text" required formControlName="childName" class="inputBox">
-        <select formControlName="childName">
-          <option *ngFor="let childName of childrenList" [value]="childName">
-            {{childName}}</option>
-        </select>
-      </ion-input>
-    </ion-item>
+    <div class="reactive-form">
+      <ion-label position="stacked" class="childName">Child's name:</ion-label>
+      <form autocomplete="on" novalidate [formGroup]="noShowForm" (ngSubmit)="submitReactiveForm($event)" required class="inputBox kidsName">
+        <div class="container">
+          <div class="ng-autocomplete">
+            <ng-autocomplete #ngAutoCompleteStatic [data]="childrenList" formControlName="childName" 
+            [initialValue]="" [placeHolder]="placeholder" [searchKeyword]="keyword" 
+            historyIdentifier="childrenListList" [historyHeading]="historyHeading" historyListMaxNumber="3" 
+            notFoundText="Not found" [itemTemplate]="itemTemplateStatic" [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+  
+            <ng-template #itemTemplateStatic let-item>
+              <a [innerHTML]="item"></a>
+            </ng-template>
+  
+            <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+    </div>
 
     <div *ngIf="childName.invalid && (childName.touched || childName.dirty)">
       <div *ngIf="childName.errors.required">
@@ -47,25 +60,21 @@
 
     <ion-item>
       <ion-label position="stacked">From:</ion-label>
-      <ion-datetime displayFormat="DDDD, DD MMMM YYYY" [(ngModel)]="todayFrom" 
+      <ion-datetime displayFormat="DDDD, DD MMMM YYYY"
       placeholder="Select Date" formControlName="dateFrom" required
-      [min]="minDate" max="2050" class="inputBox"></ion-datetime>
+      [min]="minDate" max="2050" class="inputBox" style="margin-left:3em;"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">To:</ion-label>
-      <ion-datetime displayFormat="DDDD, DD MMMM YYYY" [(ngModel)]="today"
+      <ion-datetime displayFormat="DDDD, DD MMMM YYYY"
       placeholder="Select Date" formControlName="dateTo" required
-      [min]="todayFrom" max="2050" class="inputBox"></ion-datetime>
+      [min]="dateFrom.value" max="2050" class="inputBox" style="margin-left:3em;"></ion-datetime>
     </ion-item>
 
     <div *ngIf="dateTo.value < dateFrom.value">
       <ion-text color="danger"><p class="form-error">The To: date is before the From: date.</p></ion-text>  
     </div>
-  
-    <!-- <div *ngIf="dateTo.errors.pastDateValidator">
-        <ion-text color="danger"><p class="form-error">The To: date is before the From: date 2.</p></ion-text>  
-    </div> -->
 
     <ion-item-divider></ion-item-divider>
     <ion-item>

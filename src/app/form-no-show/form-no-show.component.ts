@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl, ValidatorFn } from '@angular/forms'
 
@@ -8,18 +8,37 @@ import { AbstractControl, ValidatorFn } from '@angular/forms'
   styleUrls: ['./form-no-show.component.scss'],
 })
 export class FormNoShowComponent implements OnInit {
+  name='';
 
-  noShowForm: FormGroup;
+  public noShowForm: FormGroup;
 
-  childrenList = ['John Smith', 'Hans Schneider', 'Jean Leblanc', 'Giovanni Russo']
-  reasonList = ['sickness', 'vacations', 'birthday', 'other']
+  public childrenList = ['John Smith', 'Hans Schneider', 'Jean Leblanc', 'Giovanni Russo']
+  public reasonList = ['sickness', 'vacations', 'birthday', 'other']
 
-  todayFrom:any  = new Date().toISOString(); // sets min date for Date To:
-  today:any  = new Date().toISOString(); // sets current date for Date To:
+  // sets current date for Date From:
+  today:any  = new Date().toISOString(); 
   // sets min date for Date From: to 30 days ago
   minDate:any  = new Date(new Date().setDate(new Date().getDate()-30)).toISOString();
 
-  constructor() { }
+  public placeholder: string = 'Search for name...';
+  public keyword = 'name';
+  public historyHeading: string = 'Recently selected';
+  
+  selectEvent(item) {
+    // do something with selected item
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+  
+  onFocused(e){
+    // do something when input is focused
+  }
+
+
+constructor() { }
 
   ngOnInit() {
     this.noShowForm = new FormGroup({
@@ -30,7 +49,16 @@ export class FormNoShowComponent implements OnInit {
       notes: new FormControl('')
     }, 
       // {validator: this.pastDateValidator('dateFrom', 'dateTo')})
-    )}
+  )
+    this.noShowForm.get('dateFrom').setValue(new Date().toISOString());
+    this.noShowForm.get('dateTo').setValue(new Date().toISOString());
+  }
+  
+  //Hack to make sure the dropdown list shows on top of the next input.
+  ngAfterViewInit() {
+    (document.querySelector('.autocomplete-container') as HTMLElement).style.zIndex = '100';
+    (document.querySelector('.input-container > input') as HTMLElement).style.fontSize = '1.25em';
+  }
 
   // pastDateValidator(from: string, to: string) {
   //   return (fg: FormGroup) => {
@@ -43,6 +71,14 @@ export class FormNoShowComponent implements OnInit {
   //     }
   //   }
   // }
+  /**
+   * Submit reactive form
+   */
+  submitReactiveForm() {
+    if (this.noShowForm.valid) {
+      console.log(this.noShowForm.value);
+    }
+  }
 
   get childName() {
     return this.noShowForm.get('childName');
