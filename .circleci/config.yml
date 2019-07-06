@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: weboaks/node-karma-protractor-chrome 
+      - image: weboaks/node-karma-protractor-chrome:headless
     steps:
       - checkout
       - run:
