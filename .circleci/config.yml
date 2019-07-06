@@ -10,7 +10,8 @@ jobs:
           command: npm install
       - run:
           name: Run unit tests
-          command: npm test
+          command: npm test-ci
+          command: npm e2e
       - run:
           name: Building android
           command: ionic cordova build android

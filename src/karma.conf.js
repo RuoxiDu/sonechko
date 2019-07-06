@@ -25,7 +25,19 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    // When running in a continuous integration environment configure Chrome to run headless
+    browsers: [process.env.CI ? 'ChromeCI' : 'Chrome'],
+    customLaunchers: {
+      ChromeCI: {
+        base: 'ChromiumHeadless',
+        flags: [
+          '--no-sandbox', // required to run without privileges in docker
+          '--disable-setuid-sandbox',
+          '--disable-gpu',
+          '--disable-software-rasterizer' // https://stackoverflow.com/questions/50143413/errorgpu-process-transport-factory-cc1007-lost-ui-shared-context-while-ini
+        ]
+      }
+    },
     singleRun: false
   });
 };
