@@ -11,6 +11,8 @@ jobs:
       - run:
           name: Run unit tests
           command: npm test-ci
+      - run:
+          name: run e2e test
           command: npm e2e
       - run:
           name: Building android
