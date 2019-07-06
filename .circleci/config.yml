@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: beevelop/ionic
+      - image: weboaks/node-karma-protractor-chrome 
     steps:
       - checkout
       - run:
