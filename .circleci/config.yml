@@ -1,6 +1,6 @@
 version: 2
-  jobs: 
-    build: 
+  jobs:
+    build:
       docker:
         - image: circleci/android:api-28-node
       working_directory: ~/repo
