@@ -10,7 +10,7 @@ jobs:
           command: npm install
       - run:
           name: Run unit tests
-          command: npm test-ci
+          command: npm run test-ci
       - run:
           name: run e2e test
           command: npm e2e
