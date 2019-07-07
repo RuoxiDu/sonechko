@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test-ci": "ng test --watch=false"
+    "test-ci": "ng test --watch=false",
+    "deploy": "npx firebase deploy -P daycare-sonechko-dev"
   },
   "private": true,
   "dependencies": {
