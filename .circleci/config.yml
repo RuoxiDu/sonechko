@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: beevelop/ionic
+      - image: weboaks/node-karma-protractor-chrome
     steps:
       - checkout
       - run:
@@ -15,10 +15,11 @@ jobs:
       #    name: run e2e test
       #    command: npm run e2e
       - run:
+          name: Deploy to Firebase
+          command: npm run deploy
+      - run:
           name: Building android
           command: ionic cordova build android
       - store_artifacts:
           path: platforms/android/build/outputs/apk/android-debug.apk
-      - run:
-          name: Deploy to Firebase
-          command: npm run deploy
+      
