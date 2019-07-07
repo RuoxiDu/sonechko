@@ -8,18 +8,21 @@ jobs:
       - run:
           name: Install node modules
           command: npm install
-      #- run:
-      #    name: Run unit tests
-      #    command: npm run test-ci
+      - run:
+          name: Build
+          command: npm run build
+      - run:
+          name: Run unit tests
+          command: npm run test-ci
       #- run:
       #    name: run e2e test
       #    command: npm run e2e
       - run:
           name: Deploy to Firebase
           command: npm run deploy
-      - run:
-          name: Building android
-          command: ionic cordova build android
-      - store_artifacts:
-          path: platforms/android/build/outputs/apk/android-debug.apk
+      #- run:
+      #    name: Building android
+      #    command: ionic cordova build android
+      #- store_artifacts:
+      #    path: platforms/android/build/outputs/apk/android-debug.apk
       
