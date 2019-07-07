@@ -19,3 +19,6 @@ jobs:
           command: ionic cordova build android
       - store_artifacts:
           path: platforms/android/build/outputs/apk/android-debug.apk
+      - run:
+          name: Deploy to Firebase
+          command: npm run deploy
