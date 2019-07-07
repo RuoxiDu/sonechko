@@ -14,9 +14,9 @@ jobs:
       - run:
           name: Run unit tests
           command: npm run test-ci
-      #- run:
-      #    name: run e2e test
-      #    command: npm run e2e
+      - run:
+          name: run e2e test
+          command: npm run e2e
       - run:
           name: Deploy to Firebase
           command: npm run deploy
