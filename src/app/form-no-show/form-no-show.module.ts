@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { FormNoShowComponent } from './form-no-show.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     IonicModule,
     ReactiveFormsModule,
     AutocompleteLibModule,
+    Ionic4DatepickerModule,
     RouterModule.forChild([
       {
         path: '',

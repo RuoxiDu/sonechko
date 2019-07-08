@@ -20,6 +20,16 @@ ion-button {
     .inputBox {
         margin: 1em;
     }
+    .ibFont {
+        opacity: 0.75;
+    }
+    .hilite {
+        background-color: gainsboro;
+        margin-left: 3em;
+    }
+    .ioCalendar {
+        margin: 0 1em;
+    }
     .ng-autocomplete {
         width: auto;
     }

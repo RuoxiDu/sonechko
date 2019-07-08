@@ -15,15 +15,26 @@ export class FormNoShowComponent implements OnInit {
   public childrenList = ['John Smith', 'Hans Schneider', 'Jean Leblanc', 'Giovanni Russo']
   public reasonList = ['sickness', 'vacations', 'birthday', 'other']
 
-  // sets current date for Date From:
-  today:any  = new Date().toISOString(); 
-  // sets min date for Date From: to 30 days ago
-  minDate:any  = new Date(new Date().setDate(new Date().getDate()-30)).toISOString();
+   // ionic4datepicker settings
+  public myDate = new Date().toISOString();
+  public minDate:any  = new Date(new Date().setDate(new Date().getDate()-30)).toISOString();
+  public datePickerObj: any = {
+    showTodayButton: false, // default true
+    closeOnSelect: true, // default false
+    mondayFirst: true, // default false
+    fromDate: this.minDate,
+    dateFormat: 'DD MMMM YYYY',
+    btnProperties: { 
+      size: 'large',
+      color: 'dark' }
+  }
+
 
   public placeholder: string = 'Search for name...';
   public keyword = 'name';
-  public historyHeading: string = 'Recently selected';
+  public historyHeading: string = 'Recently selected:';
   
+  //functions for dropdown
   selectEvent(item) {
     // do something with selected item
   }
@@ -50,8 +61,8 @@ constructor() { }
     }, 
       // {validator: this.pastDateValidator('dateFrom', 'dateTo')})
   )
-    this.noShowForm.get('dateFrom').setValue(new Date().toISOString());
-    this.noShowForm.get('dateTo').setValue(new Date().toISOString());
+    // this.noShowForm.get('dateFrom').setValue(new Date().toISOString());
+    // this.noShowForm.get('dateTo').setValue(new Date().toISOString());
   }
   
   //Hack to make sure the dropdown list shows on top of the next input.

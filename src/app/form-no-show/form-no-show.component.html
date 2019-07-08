@@ -56,31 +56,29 @@
         <ion-text color="danger"><p class="form-error">Reason for absence is missing.</p></ion-text>  
       </div>
     </div>
-
-
+  
     <ion-item>
       <ion-label position="stacked">From:</ion-label>
-      <ion-datetime displayFormat="DDDD, DD MMMM YYYY"
-      placeholder="Select Date" formControlName="dateFrom" required
-      [min]="minDate" max="2050" class="inputBox" style="margin-left:3em;"></ion-datetime>
+      <ion-input placeholder="Select date" readonly formControlName="dateFrom" [liIonic4Datepicker]="datePickerObj" class="inputBox hilite"
+      (ionchange)="myFunction()"><ion-icon name="calendar" class="ioCalendar"></ion-icon>
+      </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">To:</ion-label>
-      <ion-datetime displayFormat="DDDD, DD MMMM YYYY"
-      placeholder="Select Date" formControlName="dateTo" required
-      [min]="dateFrom.value" max="2050" class="inputBox" style="margin-left:3em;"></ion-datetime>
+      <ion-input placeholder="Select date" readonly formControlName="dateTo" [liIonic4Datepicker]="datePickerObj" class="inputBox hilite"
+        (ionchange)="myFunction()"><ion-icon name="calendar" class="ioCalendar"></ion-icon>
+      </ion-input>
     </ion-item>
 
     <div *ngIf="dateTo.value < dateFrom.value">
       <ion-text color="danger"><p class="form-error">The To: date is before the From: date.</p></ion-text>  
-    </div>
+    </div> 
 
-    <ion-item-divider></ion-item-divider>
     <ion-item>
       <ion-label position="stacked">Notes:</ion-label>
       <ion-textarea placeholder="Enter more information here..." type="text" inputmode="text" 
-      auto-grow="true" color="dark" formControlName="notes" wrap="soft" class="inputBox"></ion-textarea>
+      auto-grow="true" color="dark" formControlName="notes" wrap="soft" class="inputBox ibFont"></ion-textarea>
     </ion-item>
 
     
