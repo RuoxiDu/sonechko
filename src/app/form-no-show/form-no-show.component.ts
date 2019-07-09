@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AbstractControl, ValidatorFn } from '@angular/forms'
 
 @Component({
   selector: 'app-form-no-show',
@@ -10,15 +9,15 @@ import { AbstractControl, ValidatorFn } from '@angular/forms'
 export class FormNoShowComponent implements OnInit {
   name='';
 
-  public noShowForm: FormGroup;
+  noShowForm: FormGroup;
 
-  public childrenList = ['John Smith', 'Hans Schneider', 'Jean Leblanc', 'Giovanni Russo']
-  public reasonList = ['sickness', 'vacations', 'birthday', 'other']
+  childrenList = ['John Smith', 'Hans Schneider', 'Jean Leblanc', 'Giovanni Russo']
+  reasonList = ['sickness', 'vacations', 'birthday', 'other']
 
    // ionic4datepicker settings
-  public myDate = new Date().toISOString();
-  public minDate:any  = new Date(new Date().setDate(new Date().getDate()-30)).toISOString();
-  public datePickerObj: any = {
+  myDate = new Date().toISOString();
+  minDate:any  = new Date(new Date().setDate(new Date().getDate()-30)).toISOString();
+  datePickerObj: any = {
     showTodayButton: false, // default true
     closeOnSelect: true, // default false
     mondayFirst: true, // default false
@@ -29,11 +28,11 @@ export class FormNoShowComponent implements OnInit {
       color: 'dark' }
   }
 
-
-  public placeholder: string = 'Search for name...';
-  public keyword = 'name';
-  public historyHeading: string = 'Recently selected:';
+  placeholder: string = 'Search for name...';
+  keyword = 'name';
+  historyHeading: string = 'Recently selected:';
   
+
   //functions for dropdown
   selectEvent(item) {
     // do something with selected item
@@ -49,20 +48,18 @@ export class FormNoShowComponent implements OnInit {
   }
 
 
-constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.noShowForm = new FormGroup({
-      childName: new FormControl('', Validators.required),
-      reason: new FormControl('', Validators.required),
-      dateFrom: new FormControl('', Validators.required),
-      dateTo: new FormControl('', [Validators.required]), 
-      notes: new FormControl('')
-    }, 
-      // {validator: this.pastDateValidator('dateFrom', 'dateTo')})
-  )
-    // this.noShowForm.get('dateFrom').setValue(new Date().toISOString());
-    // this.noShowForm.get('dateTo').setValue(new Date().toISOString());
+        childName: new FormControl('', Validators.required),
+        reason: new FormControl('', Validators.required),
+        dateFrom: new FormControl('', Validators.required),
+        dateTo: new FormControl('', Validators.required),
+        notes: new FormControl('')
+      },
+      this.pastDateValidator
+    );
   }
   
   //Hack to make sure the dropdown list shows on top of the next input.
@@ -71,20 +68,12 @@ constructor() { }
     (document.querySelector('.input-container > input') as HTMLElement).style.fontSize = '1.25em';
   }
 
-  // pastDateValidator(from: string, to: string) {
-  //   return (fg: FormGroup) => {
-  //     let f = fg.controls[from];
-  //     let t = fg.controls[to];
-  //     if (f.value > t.value) {
-  //       t.setErrors({pastDateValidator: true});
-  //     } else {
-  //       t.setErrors(null);
-  //     }
-  //   }
-  // }
-  /**
-   * Submit reactive form
-   */
+  pastDateValidator(fg: FormGroup) {
+    return new Date((fg.get('dateFrom').value)) > new Date((fg.get('dateTo').value))
+       ? {"dateError": true} : null;
+  }
+
+
   submitReactiveForm() {
     if (this.noShowForm.valid) {
       console.log(this.noShowForm.value);

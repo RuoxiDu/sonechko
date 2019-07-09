@@ -17,7 +17,7 @@ export class FormTrustedPersonComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       phone: new FormControl('', [Validators.required, Validators.pattern('[(]?([0-9]{3})[)]?[-. ]?([0-9]{3})[-. ]?([0-9]{4})')]),
-      email: new FormControl('', [Validators.required, Validators.pattern('^[^@]+@[^@]+[.][^@]{2,}$')]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       photo: new FormControl(''),
       copyOfId: new FormControl('')
     });

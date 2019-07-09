@@ -14,7 +14,7 @@
 
     <div class="reactive-form">
       <ion-label position="stacked" class="childName">Child's name:</ion-label>
-      <form autocomplete="on" novalidate [formGroup]="noShowForm" (ngSubmit)="submitReactiveForm($event)" required class="inputBox kidsName">
+      <form autocomplete="on" novalidate [formGroup]="noShowForm" (ngSubmit)="submitReactiveForm($event)" class="inputBox kidsName">
         <div class="container">
           <div class="ng-autocomplete">
             <ng-autocomplete #ngAutoCompleteStatic [data]="childrenList" formControlName="childName" 
@@ -44,8 +44,8 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked">Reason for absence:</ion-label>
-        <ion-select placeholder="Click to select reason" required formControlName="reason" class="inputBox">
-            <ion-select-option *ngFor="let reason of reasonList" [value]="reason">
+        <ion-select placeholder="Click to select reason" formControlName="reason" class="inputBox">
+            <ion-select-option *ngFor="let reason of reasonList" [value]="reason" required>
                 {{reason}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -60,18 +60,22 @@
     <ion-item>
       <ion-label position="stacked">From:</ion-label>
       <ion-input placeholder="Select date" readonly formControlName="dateFrom" [liIonic4Datepicker]="datePickerObj" class="inputBox hilite"
-      (ionchange)="myFunction()"><ion-icon name="calendar" class="ioCalendar"></ion-icon>
+      (ionchange)="myFunction()"><ion-icon name="calendar" class="ioCalendar" required></ion-icon>
       </ion-input>
     </ion-item>
+  
+    <div *ngIf="noShowForm.errors?.dateError && (dateFrom.touched || dateFrom.dirty)">
+      <ion-text color="danger"><p class="form-error">The To: date is before the From: date.</p></ion-text>  
+    </div> 
 
     <ion-item>
       <ion-label position="stacked">To:</ion-label>
       <ion-input placeholder="Select date" readonly formControlName="dateTo" [liIonic4Datepicker]="datePickerObj" class="inputBox hilite"
-        (ionchange)="myFunction()"><ion-icon name="calendar" class="ioCalendar"></ion-icon>
+        (ionchange)="myFunction()"><ion-icon name="calendar" class="ioCalendar" required></ion-icon>
       </ion-input>
     </ion-item>
 
-    <div *ngIf="dateTo.value < dateFrom.value">
+    <div *ngIf="noShowForm.errors?.dateError && (dateTo.touched || dateTo.dirty)">
       <ion-text color="danger"><p class="form-error">The To: date is before the From: date.</p></ion-text>  
     </div> 
 
@@ -83,7 +87,7 @@
 
     
     <ion-button type="submit" expand="block" color="medium" 
-    [disabled]="noShowForm.invalid || dateTo.value < dateFrom.value">SAVE</ion-button> 
+    [disabled]="noShowForm.invalid">SAVE</ion-button> 
 
     <p>
       Value: {{ noShowForm.value | json }}
